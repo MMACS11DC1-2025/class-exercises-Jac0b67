@@ -27,11 +27,24 @@ Your total is $3.42
 """
 print("Welcome to the McDonald how may I take your order?")
 
+print("Welcome to the McDonald how may I take your order?")
+
 burger = input("Would you like a burger for $5? (Yes/No)").lower()
 fries = input("Would you like fries for $3? (Yes/No)").lower()
 
-
-
 if burger == ("yes") and fries == ("yes"):
     total = int(5) + int(3)
-    tax = int(total) * int(0.14)
+    tax = float(total) * (1.14)
+    print("You're total with tax is " + str(tax))
+elif burger == ("yes") and fries == ("no"):
+    total = int(5) 
+    tax = float(total) * (1.14)
+    print("You're total with tax is " + str(tax))
+elif burger == ("no") and fries == ("yes"):
+    total = int(3)
+    tax = float(total) * (1.14)
+    print("You're total with tax is " + str(tax))
+elif burger == ("no") and fries == ("no"):
+    total = int(0)
+    tax = float(total) * (1.14)
+    print("You're total with tax is " + str(tax))
