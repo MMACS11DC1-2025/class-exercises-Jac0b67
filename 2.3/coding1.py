@@ -1,5 +1,5 @@
 """
-Write an Age in 2049 program that asks your age and outputs how old you'll be 31 years from now.
+Write an Age in 2056 program that asks your age and outputs how old you'll be 31 years from now.
 
 Examples:
 
@@ -11,7 +11,3 @@ How old are you?
 > 25
 In 2056, you will be 56 years old!
 """
-
-current_age = input("How old are you currently?")
-year = int(24) + int(current_age)
-print("In 2049, you will be " + str(year) + " years old")
