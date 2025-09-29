@@ -5,6 +5,5 @@ for line in file:
         print(line)
         myline = line
     
-    if:
     
     
