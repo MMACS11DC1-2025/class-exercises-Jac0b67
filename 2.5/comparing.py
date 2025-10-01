@@ -10,32 +10,40 @@ Test as you go! Describe in your comments what steps you took to test your code.
 # Author: Jacob Joe
 # Date: 9/29/2025
 
-# This program will open a file containing info from multiple
-# students and will determine how many people enjoy the same
-# fast_food as you and the person that matches you the least
+# This program will determine how many people in this class enjoy the same 
+# kind of fast as you and 
+favourite_food = input("Enter your favourite fast food: ").strip().lower()
 
-# Opens a file of student responses
-file = open("2.4/responses.csv")
-junk = file.readline()
+file = open("2.4/responses.csv")  
+header = file.readline()  
 
-most_relatable = ""
-top_score = 0
+lines = file.readlines()
 
-personal_favourite = file.readline().strip().split(",")
 
-# Goes through every person in the file
-for line in file:
-    other_favourites = file.readline().strip().split(",")
-    if "a&w" in other_favourites():
-        
-    
+main_data = lines[0].strip().split(",")
+main_name = main_data[1]
+main_prefs = [item.strip().lower() for item in main_data]
 
-for fave in personal_favourites:
-    if fave in other_name:
-        shared_interest += 1
+same_food_count = 0
+least_relatable = ""
+min_shared = float('inf')  
 
-if shared_interest > top_score:
-    most_relatable = other_name
-    other_name = shared_interest
+for line in lines:
+    data = line.strip().split(",")
+    other_name = data[1]
+    other_prefs = [item.strip().lower() for item in data]
 
-print("most_relatable")
+    shared = 0
+    for food in main_prefs:
+        if food in other_prefs:
+            shared += 1
+
+    if shared < min_shared:  
+        min_shared = shared
+        least_relatable = other_name
+
+    if favourite_food in other_prefs:
+        same_food_count += 1
+
+print("Number of people who like " + str(favourite_food) + " is:" + str(same_food_count))
+print("The person the least like you is: " + str(least_relatable))
