@@ -11,9 +11,12 @@ Test as you go! Describe in your comments what steps you took to test your code.
 # Date: 9/29/2025
 
 # This program will determine how many people in this class enjoy the same 
-# kind of fast as you and 
+# kind of fast as you and a person you might enjoy eating with
+
+# Asks user for their favourite fast food
 favourite_food = input("Enter your favourite fast food: ").strip().lower()
 
+# Opens file
 file = open("2.4/responses.csv")  
 header = file.readline()  
 
@@ -25,7 +28,8 @@ main_name = main_data[1]
 main_prefs = [item.strip().lower() for item in main_data]
 
 same_food_count = 0
-least_relatable = ""
+top_score = 0
+most_relatable = ""
 min_shared = float('inf')  
 
 for line in lines:
@@ -33,17 +37,18 @@ for line in lines:
     other_name = data[1]
     other_prefs = [item.strip().lower() for item in data]
 
-    shared = 0
-    for food in main_prefs:
-        if food in other_prefs:
-            shared += 1
+    things_in_common = 0
 
-    if shared < min_shared:  
-        min_shared = shared
-        least_relatable = other_name
+    for fave in main_prefs:
+        if fave in other_prefs and favourite_food in other_prefs:
+            things_in_common += 1
+
+    if things_in_common > top_score:
+        most_relatable = other_name
+        top_score = things_in_common
 
     if favourite_food in other_prefs:
         same_food_count += 1
 
 print("Number of people who like " + str(favourite_food) + " is:" + str(same_food_count))
-print("The person the least like you is: " + str(least_relatable))
+print("The person you would have a good meal with is: " + str(most_relatable))
