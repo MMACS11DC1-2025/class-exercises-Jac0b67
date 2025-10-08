@@ -25,14 +25,10 @@ Test as you go! Describe in your comments what steps you took to test your code.
 # Asks for favourite food
 favourite_food = input("What is your favourite food? ").strip().lower()
 
-try:
-    # Opens file and reads in data
-    with open("2.4/responses.csv", 'r') as file:
-        header = file.readline()
-        lines = file.readlines()
-except FileNotFoundError:
-    print("Error: Can't find 'responses.csv'.")
-    exit()
+# Opens file and reads in data
+file = open("2.4/responses.csv")
+header = file.readline()
+lines = file.readlines()
 
 # Splits first line into main user's data
 main_data = lines[0].strip().split(",")
@@ -76,9 +72,7 @@ more_than_half = sum(1 for count in common_counts if count > half_prefs)
 less_than_half = sum(1 for count in common_counts if count < half_prefs)
 exactly_half = sum(1 for count in common_counts if count == half_prefs)
 
-# TESTING: Print out the data used for comparison
-# print("DEBUG - main_prefs:", main_prefs)
-# print("DEBUG - common_counts:", common_counts)
+# TESTING: Prints out the data used for comparison
 
 # Prints out the results
 print("Number of people who like " + str(favourite_food) + " is: " + str(same_food_count))
