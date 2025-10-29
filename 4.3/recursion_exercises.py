@@ -6,7 +6,8 @@ Write recursive functions for each of the following problems:
 # Exercise 0: Factorial
 # Remember that n! is defined as n * (n-1)! and 0! is 1
 def factorial(n):
-    # TODO implement this
+    if n > 1:
+        return n * factorial(n-1)
     return 1
 
 print(factorial(1)) # Expected output: 1
@@ -20,7 +21,8 @@ print(factorial(5)) # Expected output: 120
 # Remember that x^y is defined as x * x^(y-1) and x^0 is 1.
 
 def power(x, y):
-    # TODO implement this
+    if x > 0 and y > 0:
+        return x * power(x, y-1)
     return 1
 
 # Test cases
@@ -34,7 +36,8 @@ print(power(3, 2))  # Expected output: 9
 # Remember that the sum of a list is the first item plus the sum of the rest of the list.
 
 def sum_list_recursive_helper(numbers, index):
-    # TODO: implement this
+    if index < len(numbers):
+        return numbers[index] + sum_list_recursive_helper(numbers, index + 1)
     return 0
 
 def sum_list(numbers):
@@ -56,11 +59,13 @@ print(sum_list([5, 10, 15]))    # Expected output: 30
 
 vowels = "aeiou"
 def count_vowels_recursive_helper(word, index):
-    # TODO implement this
+    if index < len(word):
+        return 
     return 0
 
 def count_vowels(word):
-    # TODO implement this
+    if vowels in word:
+        return count_vowels_recursive_helper(word, 0)
     return 0
 
 # Test cases
