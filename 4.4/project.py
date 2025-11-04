@@ -43,11 +43,12 @@ try:
     if levels < 0:
         raise ValueError("levels must be non-negative")
     if levels > settings["max_levels"]:
-        print("Requested levels too high; clamping to " + settings['max_levels'])
+        print("Requested levels too high; clamping to " + settings[float('max_levels')])
         levels = settings["max_levels"]
 except ValueError:
-    print("Invalid input. Using 4 levels.")
-    levels = 4
+    levels = 9
+    print("Extreme recursion detected. Using max level instead.")
+    
 
 pen.speed(0)
 pen.penup()
