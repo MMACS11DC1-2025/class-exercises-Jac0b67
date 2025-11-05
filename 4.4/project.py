@@ -36,18 +36,22 @@ def drawTree(level, branchLength):
     
     return calls
 
-# Interaction and validation
-try:
-    levels_raw = input("How many levels do you want me to draw? ")
+# Interaction and validation (no try/except)
+levels_raw = input("How many levels do you want me to draw? ").strip()
+if levels_raw == "":
+    print("No input given. Using 4 levels.")
+    levels = 4
+elif levels_raw.lstrip('+-').isdigit():
     levels = int(levels_raw)
     if levels < 0:
-        raise ValueError("levels must be non-negative")
+        print("Negative level requested; using 0.")
+        levels = 0
     if levels > settings["max_levels"]:
-        print("Requested levels too high; clamping to " + settings[float('max_levels')])
+        print("Requested levels too high; clamping to " + settings["max_levels"])
         levels = settings["max_levels"]
-except ValueError:
-    levels = 9
-    print("Extreme recursion detected. Using max level instead.")
+else:
+    print("Invalid input. Using max levels.")
+    levels = settings["max_levels"]
     
 
 pen.speed(0)
@@ -58,11 +62,25 @@ pen.pendown()
 pen.color("brown")
 pen.width(3)
 
+# Allow user to override the color palette with a simple comma-separated list.
+# Example input: "#ff0000, #00ff00, blue"
+colors_raw = input("Enter comma-separated colors (hex codes or names) or press Enter for defaults: ").strip()
+if colors_raw == "":
+    colors = settings["colors"]
+else:
+    colors = [c.strip() for c in colors_raw.split(",") if c.strip()]
+    if len(colors) == 0:
+        colors = settings["colors"]
+settings["colors"] = colors
+
 total_calls = 0
-for i in range(16):
+for i in range(8):
     pen.pencolor(settings["colors"][i % len(settings["colors"])])
     total_calls += drawTree(levels, settings["branch_length"])
     pen.right(45)
+
+
+
 
 print("Total recursive calls made: " + str(total_calls))
 tmod.done()
