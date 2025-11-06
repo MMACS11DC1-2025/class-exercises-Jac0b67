@@ -4,7 +4,7 @@ import turtle as tmod  # turtle graphics module
 settings = {
     "branch_length": 60,  # starting branch length
     "angle": 120,         # angle used between turns
-    "colors": ["#ff0000", "#ff4500", "#ffa500", "#ffd700", "#ffff00", "#adff2f", "#7fff00", "#00ff00"],
+    "colors": ["#c300ff", "#8400ff", "#0004ff", "#0066ff", "#00ccff", "#2fffe3", "#00ffbf57", "white"],
     "max_levels": 9  # safety cap to avoid extreme recursion
 }
 
@@ -14,8 +14,8 @@ pen = None
 
 def draw_tree(level, branchLength):
     """
-    Simple recursive binary tree: draw a branch, then smaller sub-branches.
-    Returns the number of recursive calls (including this one).
+    Recursive snowflake: Draw a branch, then smaller sub-branches.
+    Returns the number of recursive calls.
     """
     # base case: stop recursion at level 0 or below
     if level <= 0:
@@ -40,7 +40,7 @@ def draw_tree(level, branchLength):
     return calls
 
 def main():
-    """Main entry: set up turtle, get user input, draw, and report counts."""
+    """Main entry: sets up the turtle, gets user input, draw, and report counts."""
     global pen, screen
 
     # Set up drawing screen and pen (created at runtime)
@@ -49,19 +49,19 @@ def main():
     pen = tmod.Turtle()
 
     # Interaction and validation (no try/except)
-    levels_raw = input("How many levels do you want me to draw? ").strip()
-    if levels_raw == "":
+    levels_custom = input("How many levels do you want to draw? ").strip()
+    if levels_custom == "":
         print("No input given. Using 4 levels.")
         levels = 4
     else:
         try:
-            levels = int(levels_raw)
+            levels = int(levels_custom)
             if levels < 0:
-                print("Negative level requested; using 0.")
+                print("Negative level requested. Using 0 instead.")
                 levels = 0
             if levels > settings["max_levels"]:
                 # fix: convert int to str when concatenating
-                print("Requested levels too high; clamping to " + str(settings["max_levels"]))
+                print("Requested levels too high. Reducing to " + str(settings["max_levels"]))
                 levels = settings["max_levels"]
         except ValueError:
             print("Invalid input. Using max levels.")
@@ -79,12 +79,12 @@ def main():
 
     # Allow user to override the color palette with a simple comma-separated list.
     # Example input: "#ff0000, #00ff00, blue"
-    colors_raw = input("Enter comma-separated colors or just press Enter for default colors: ").strip()
-    if colors_raw == "":
+    colors_custom = input("Enter comma-separated colors or just press Enter for default colors: ").strip()
+    if colors_custom == "":
         colors = settings["colors"]
     else:
-        # parse user colors and ignore empty entries
-        colors = [c.strip() for c in colors_raw.split(",") if c.strip()]
+        # user colors and ignore empty entries
+        colors = [c.strip() for c in colors_custom.split(",")]
         if len(colors) == 0:
             colors = settings["colors"]
     settings["colors"] = colors
