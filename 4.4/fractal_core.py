@@ -1,6 +1,6 @@
 """fractal_core.py
 
-Small pure-Python functions used for non-visual testing of the recursive
+Python functions used for non-visual testing of the recursive
 fractal in `project.py`.
 
 This module intentionally avoids turtle or any GUI dependencies so tests
@@ -12,9 +12,9 @@ from typing import Optional
 
 def expected_calls(level: int, branches: int = 3) -> int:
     """Compute the expected number of recursive calls performed by
-    the `drawTree` function in `project.py`.
+    the `draw_tree` function in `project.py`.
 
-    The `drawTree` implementation used in `4.4/project.py` returns 0 for
+    The `draw_tree` implementation used in `4.4/project.py` returns 0 for
     level <= 0 and otherwise counts 1 (this call) plus `branches` times the
     calls at level-1. That produces the recurrence:
 
