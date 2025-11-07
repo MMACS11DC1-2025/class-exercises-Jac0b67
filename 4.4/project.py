@@ -48,36 +48,36 @@ def main():
     screen.bgcolor("black")
     pen = tmod.Turtle()
 
-    # Interaction and validation (no try/except)
+    # Interaction and validation
     levels_custom = input("How many levels do you want to draw? ").strip()
     if levels_custom == "":
         print("No input given. Using 4 levels.")
         levels = 4
     else:
-        try:
+        # validate integer input 
+        if levels_custom.lstrip("+-").isdigit():
             levels = int(levels_custom)
             if levels < 0:
                 print("Negative level requested. Using 0 instead.")
                 levels = 0
-            if levels > settings["max_levels"]:
-                # fix: convert int to str when concatenating
+            elif levels > settings["max_levels"]:
                 print("Requested levels too high. Reducing to " + str(settings["max_levels"]))
                 levels = settings["max_levels"]
-        except ValueError:
+        else:
             print("Invalid input. Using max levels.")
             levels = settings["max_levels"]
-# 
+
         
     # Pen initial settings before drawing
     pen.speed(0)
     pen.penup()
     pen.goto(0, 0)
-    pen.left(90)   # point upwards
+    pen.left(90)   
     pen.pendown()
     pen.color("brown")
     pen.width(3)
 
-    # Allow user to override the color palette with a simple comma-separated list.
+    # Allows user to override the color palette with a comma-separated list.
     # Example input: "#ff0000, #00ff00, blue"
     colors_custom = input("Enter comma-separated colors or just press Enter for default colors: ").strip()
     if colors_custom == "":
