@@ -1,4 +1,4 @@
-import turtle as tmod  # turtle graphics module
+import turtle  # turtle graphics module
 
 # Settings dictionary: tweak drawing parameters here
 settings = {
@@ -44,9 +44,9 @@ def main():
     global pen, screen
 
     # Set up drawing screen and pen (created at runtime)
-    screen = tmod.Screen()
+    screen = turtle.Screen()
     screen.bgcolor("black")
-    pen = tmod.Turtle()
+    pen = turtle.Turtle()
 
     # Interaction and validation
     levels_custom = input("How many levels do you want to draw? ").strip()
@@ -98,7 +98,7 @@ def main():
 
     # Report recursion usage and finish
     print("Total recursive calls made: " + str(total_calls))
-    tmod.done()
+    turtle.done()
 
 if __name__ == "__main__":
     main()
