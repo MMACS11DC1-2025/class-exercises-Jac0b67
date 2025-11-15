@@ -1,16 +1,13 @@
-import turtle  # turtle graphics module
+import turtle  # import the turtle
+pen = turtle.Turtle() 
 
 # Settings dictionary: tweak drawing parameters here
 settings = {
     "branch_length": 60,  # starting branch length
     "angle": 120,         # angle used between turns
-    "colors": ["#c300ff", "#8400ff", "#0004ff", "#0066ff", "#00ccff", "#2fffe3", "#00ffbf57", "white"],
+    "colors": []
     "max_levels": 9  # safety cap to avoid extreme recursion
 }
-
-# Pen and screen will be created when the script runs, not at import time.
-screen = None
-pen = None
 
 def draw_tree(level, branchLength):
     """
@@ -37,16 +34,9 @@ def draw_tree(level, branchLength):
     calls += draw_tree(level - 1, branchLength * 0.6)
     pen.backward(branchLength)  # return to branch base
     
-    return calls
 
-def main():
-    """Main entry: sets up the turtle, gets user input, draw, and report counts."""
-    global pen, screen
 
-    # Set up drawing screen and pen (created at runtime)
-    screen = turtle.Screen()
-    screen.bgcolor("black")
-    pen = turtle.Turtle()
+    
 
     # Interaction and validation
     levels_custom = input("How many levels do you want to draw? ").strip()
@@ -99,6 +89,3 @@ def main():
     # Report recursion usage and finish
     print("Total recursive calls made: " + str(total_calls))
     turtle.done()
-
-if __name__ == "__main__":
-    main()
