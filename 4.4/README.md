@@ -1,13 +1,27 @@
 # ReadMe for new_project
 
+# How to use the program:
+- The program will prompt the user to input the number of levels they desire to create a snowflake
+- It will keep on asking for a valid input until the user provides one
+
 # Approach:
 - I was trying to create a snowflake fractal art generator that would allow the user
 to input the number of levels and customize the colour of the pattern
--
+- I already had the base code for the snowflake fractal so I used that as the starting point
+- I wanted to cap the levels at 9 since anything higher would take to long and be inefficent
+- I also wanted to increase the levels if the user inputted a number less than or equal to 0
+- So I decided to make a while loop that would keep on asking the user for a valid input until they provided one
+
+
 
 # Debugging:
-- There were some issues with indenting which led the code to not run
+- There were some issues with syntax and more specifically indenting which led the code to not run
+- I wasn't able to concatenate certain strings due to me forgetting about not being able to concatenate str and floats
+- I had difficulties with the level input since it was not recognizing any input less than or equal to 0 so I changed the input to a float instead of an int
+-
 
 # Testing:
-- The pattern wouldn't properly generate the way I wanted to as I was missing 
+- When I was running it to see how well the while loop was working, I inputted levels 10, 0 and -67 to see if it would handle edge cases
+- I was able to see it was able to handle 10 but it did not recognize any user_input equal to or less than 0 so I made level into a float to fix it
+- I tried adding in the ability to recognize non-numeric inputs but decided against it as I could not get it to work properly
 

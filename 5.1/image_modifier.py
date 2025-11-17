@@ -29,4 +29,4 @@ for i in range(width):
         if coolcolours.is_green(r,g,b):
             beach_colour = image_beach[i,j] 
             image_output.putpixel((i,j), beach_colour)
-image_output.save("output.png", "png")
+image_output.save("5.1/output.png", "png")
