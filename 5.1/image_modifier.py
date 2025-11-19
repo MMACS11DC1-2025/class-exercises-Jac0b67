@@ -7,6 +7,12 @@
 from PIL import Image
 import coolcolours
 
+def is_green(r,g,b):    
+    if  r <= 0 and r < 25 and g <= 255 and b >= 0 and b < 25:
+        return "green"
+    else:
+        return "other"
+
 # Opens image files A (green) and B (background)
 image_green = Image.open("5.1/kid-green.jpg").load()
 image_beach = Image.open("5.1/beach.jpg").load()
