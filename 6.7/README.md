@@ -10,4 +10,6 @@
 
 # Code profiling
 
-# Challenges faced 
+# Challenges faced
+ - I took some time to wonder about what my program would do and kept on slightly changing the goals until I settled on finding the percentage
+ of man-made structures in the images since I thought it would be easy to identify the objects from its surrondings.

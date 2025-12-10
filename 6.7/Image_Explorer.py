@@ -18,48 +18,51 @@ def is_target_feature(r, g, b):
         return True
     return False
 
+mater_list = []
+
 # Opens image file
-file = Image.open("6.7/spot-6-vancouver-canada.jpg")
-sat_image = file.load()
+images = ["6.7/spot-6-vancouver-canada.jpg", "6.7/Benin-Nigeria.jpg", "6.7/Reese-Michigan.jpg", "6.7/Earth_from_Space_Prague.jpg"]
 
-image_output = Image.open("6.7/spot-6-vancouver-canada.jpg")
+for i in range(len(images)):
+    image_output = Image.open(images[i])
+    file = Image.open(images[i])
+    sat_image = file.load()
 
-# Goes through all pixels
-width = file.width
-height = file.height
+    # Goes through all pixels
+    width = file.width
+    height = file.height
 
-# Creates a list to store pixels
-is_target_feature_pixels = []
-water_pixels = []
-green_pixels = []
+    # Creates a list to store pixels
+    is_target_feature_pixels = []
+    water_pixels = []
+    green_pixels = []
 
-# Initialize counter for each colours pixels
-is_target_feature_count = 0
-water_count = 0
-green_count = 0
+    # Initialize counter for each colours pixels
+    is_target_feature_count = 0
+    water_count = 0
+    green_count = 0
 
-# Nested loops will go over pixels from the images and calculate the feature density score for each
+    # Nested loops will go over pixels from the images and calculate the feature density score for each
+    for x in range(width):
+        for y in range(height):
+            pixel_r = sat_image[x,y][0]
+            pixel_g = sat_image[x,y][1]
+            pixel_b = sat_image[x,y][2]
+            
+            # Counts the number of pixels in the target feature
+            if is_target_feature(pixel_r, pixel_g, pixel_b):
+                is_target_feature_count += 1
+                image_output.putpixel((x, y), (241, 9, 38))
 
-for x in range(width):
-    for y in range(height):
-        pixel_r = sat_image[x,y][0]
-        pixel_g = sat_image[x,y][1]
-        pixel_b = sat_image[x,y][2]
-        
-        # Counts the number of pixels in the target feature
-        if is_target_feature(pixel_r, pixel_g, pixel_b):
-            is_target_feature_count += 1
-            image_output.putpixel((x, y), (241, 9, 38))
 
+    percent_is_target_feature = 100*is_target_feature_count/(width*height)
+    report = "The image is {:.2f} percent man-made structures.".format(percent_is_target_feature)
+    print(report)
 
-percent_is_target_feature = 100*is_target_feature_count/(width*height)
-report = "The image is {:.2f} percent man-made structures.".format(percent_is_target_feature)
-print(report)
-
-image_output.save("6.7/spot-6-vancouver-canada-output.png", "png")
+    image_output.save("{}_output.png".format(images[i]))
 
 # Filename and score will be appended to a mater list 
-
+    mater_list.append((images[i], percent_is_target_feature))
 # Time module will measure the time it takes to complete the loops
 
 # Outputs the time to three decimal places
