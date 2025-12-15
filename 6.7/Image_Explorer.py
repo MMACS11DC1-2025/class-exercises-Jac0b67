@@ -10,6 +10,8 @@ t0 = time.time()
 
 from PIL import Image
 
+t1 = time.time()
+
 # This function accepts pixel data and returns an output of true if it matches the definition of
 # buildings and false if it doesn't 
 
@@ -41,6 +43,8 @@ for i in range(len(images)):
     is_target_feature_count = 0
     water_count = 0
     green_count = 0
+    
+    t2 = time.time()
 
     # Nested loops will go over pixels from the images and calculate the feature density score for each
     for x in range(width):
@@ -67,6 +71,16 @@ for i in range(len(images)):
 
 # Outputs the time to three decimal places
 
-# Selection Sort algorithm function will sort the master list based on feature density score
+# Selection Sort algorithm function will sort the master list based on feature density score from highest to lowest
+def sel_sort(mater_list):
+    x = len(mater_list)
+    for i in range(x):
+        largest_index = i
 
+        for j in range(i+1, x):
+            if mater_list[j][1] > mater_list[largest_index][1]:
+                largest_index = j
+        mater_list[i], mater_list[largest_index] = mater_list[largest_index], mater_list[i]
+    return mater_list
+print(sel_sort(mater_list))
 # Binary Search algorithm function will sort through the list for a specific target score
